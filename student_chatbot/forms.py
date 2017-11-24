@@ -30,7 +30,7 @@ class StudentForm(forms.ModelForm):
 
         #it will call the RegisterForm and clean its values
         #and save in a variable
-        cleaned_data = super(RegisterForm, self).clean()
+        cleaned_data = super(StudentForm, self).clean()
         #make the instance of Password 
         Pass = cleaned_data["Password"]
         Re_Pass = cleaned_data["Re_Password"]
@@ -44,7 +44,7 @@ class StudentForm(forms.ModelForm):
         Fields = ["Rollno","Password"]
 
 
-def Class(forms.ModelForm):
+class Class(forms.ModelForm):
     Dob = forms.DateTimeField(label="Dob")
     Name = forms.CharField(label="Name")
     Semester = forms.CharField(label="Semester")
