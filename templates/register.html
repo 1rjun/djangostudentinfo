@@ -18,7 +18,8 @@
         </h1>
         <form method="POST" action="/register" >
             {%csrf_token%}
-            {{register_form.as_p}}
+            {{student_form.as_p}}
+            {{class_form.as_p}}
             <input type="submit" id ="reg1" value="register"/>
         </form>
        
