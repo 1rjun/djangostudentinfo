@@ -55,7 +55,7 @@ def register(request):
         register_form = RegisterForm()
 
 
-    return render(request,'register.html',{'Class_form':class_form,
+    return render(request,'register.html',{'class_form':class_form,
     'student_form':student_form})
 
 
