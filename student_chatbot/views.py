@@ -1,7 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.template import loader
 from django.shortcuts import render, redirect
-from .forms import LoginForm,RegisterForm
+from .forms import StudentForm, ClassForm, LoginForm
 # Create your views here.
 
 def index(request):
@@ -33,26 +33,30 @@ def register(request):
     #Check for the post request
     if request.method == 'POST':
         #instance of register_form created having Post request
-        register_form = RegisterForm(request.POST)
+        student_form = StudentForm(request.POST)
+        class_form = ClassForm(request.POST)
         
         #if the form is validate
-        if register_form.is_valid():
+        if student_form.is_valid() and class_form.is_valid():
 
             #process the data in form.cleaned_data as required
-            print(register_form.clean())
+            print(student_form.clean())
 
-            Name = register_form.clean()["Name"]
+            #save the data in the student model
+            student_form.save()
 
-
+            #save the data of form in the class model
+            class_form.save()
 
             #render other page 
-            return render(request,'register_done.html',{"Name":Name})
+            return HttpResponseRedirect('/register_done')
     else:
         #if no post request then form is blank
         register_form = RegisterForm()
 
 
-    return render(request,'register.html',{'register_form':register_form})
+    return render(request,'register.html',{'Class_form':class_form,
+    'student_form':student_form})
 
 
 def login(request):
