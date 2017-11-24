@@ -13,16 +13,15 @@ class LoginForm(forms.Form):
 
 
 #A registration Form
-class RegisterForm(forms.ModelForm):
+class StudentForm(forms.ModelForm):
 
     Rollno = forms.IntegerField(label="Rollno")
-    Name = forms.CharField(label="Name")
-    Class = forms.CharField(label="Semester")
-    Dob = forms.DateTimeField(label="Dob")
     Password = forms.CharField(label="Password",
     widget=forms.PasswordInput,min_length=8)
     Re_Password=forms.CharField(label="Confirm-Password",
     widget=forms.PasswordInput,min_length=8)
+    
+    
 
 # Clean method which checks whether password matches or not
 #and returns the cleaned data and put it in the register form 
@@ -39,5 +38,17 @@ class RegisterForm(forms.ModelForm):
             raise forms.ValidationError("Password doesn't Match")
         return cleaned_data
     
+    #Model form
+    class Meta:
+        model = Student
+        Fields = ["Rollno","Password"]
+
+
+def Class(forms.ModelForm):
+    Dob = forms.DateTimeField(label="Dob")
+    Name = forms.CharField(label="Name")
+    Semester = forms.CharField(label="Semester")
+
     class Meta:
         model = Class
+        fields =["Dob","Name","Sem"]
