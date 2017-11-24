@@ -69,4 +69,3 @@ def login(request):
 
 def register_done(request):
     return render(request,'register_done.html')
-
