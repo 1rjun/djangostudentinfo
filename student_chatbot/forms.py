@@ -39,3 +39,5 @@ class StudentRegistration(UserCreationForm):
 
     def save(self,commit=True)
     user = super(StudentRegistration,self).save(commit=False)
+    user.email = self.cleaned_data["email"]
+    user
