@@ -71,17 +71,3 @@ def register(request):
     'student_form':student_form})
 
 
-def login1(request):
-    if request.user.is_authenticated:
-        data = {
-            "text":"Hello i am logeed in"
-        }
-    else:
-        data = {
-            "text":"Hello i am logged out "
-        }
-    return render(request,'login.html',data)
-
-
-def register_done(request):
-    return render(request,'register_done.html')
