@@ -1,7 +1,13 @@
 from django.http import HttpResponseRedirect
 from django.template import loader
 from django.shortcuts import render, redirect
-from .forms import StudentForm, ClassForm, LoginForm
+from .forms import StudentForm, Class, LoginForm
+from django.contrib.auth import (
+    authenticate,
+    login,
+    logout,
+    get_user_model,
+)
 # Create your views here.
 
 def index(request):
@@ -14,11 +20,15 @@ def index(request):
         #Check validation of the form
         if form.is_valid():
             #process data in the clean method
-            id=form.clean_your_id()
-            print(id)
-            
+            username = form.cleaned_data["your_id"]
+            password = form.cleaned_data["your_pass"]
+            user = authenticate(username=username,password=password)
+            login(request, user)
+
+
+
             #my template 
-            return redirect('login',data=id)
+            return HttpResponseRedirect('/')
 
     else:
 
@@ -34,7 +44,7 @@ def register(request):
     if request.method == 'POST':
         #instance of register_form created having Post request
         student_form = StudentForm(request.POST)
-        class_form = ClassForm(request.POST)
+        class_form = Class(request.POST)
         
         #if the form is validate
         if student_form.is_valid() and class_form.is_valid():
@@ -52,14 +62,15 @@ def register(request):
             return HttpResponseRedirect('/register_done')
     else:
         #if no post request then form is blank
-        register_form = RegisterForm()
+        class_form = Class()
+        student_form = StudentForm()
 
 
     return render(request,'register.html',{'class_form':class_form,
     'student_form':student_form})
 
 
-def login(request):
+def login1(request):
     if request.user.is_authenticated:
         data = {
             "text":"Hello i am logeed in"
