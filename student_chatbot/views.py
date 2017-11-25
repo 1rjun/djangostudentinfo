@@ -1,5 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.template import loader
+from django.url import reverse
 from django.shortcuts import render, redirect
 from .forms import StudentForm, Class, LoginForm
 from django.contrib.auth import (
@@ -28,7 +29,7 @@ def index(request):
 
 
             #my template 
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect()
 
     else:
 
