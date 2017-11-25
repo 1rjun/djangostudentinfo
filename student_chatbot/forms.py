@@ -1,9 +1,7 @@
 from django import forms
 from .models import Class , Student
-from django.contrib.auth import (
-    authenticate,
-    get_user_model
-)
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 
 User = get_user_model()
 
@@ -29,23 +27,15 @@ class LoginForm(forms.Form):
         return super(LoginForm,self).clean()
 
 
+class StudentRegistration(UserCreationForm):
+    email = forms.EmailField(required=True)
+    first_name = forms.CharField(required=True)
+    last_name = forms.CharField(required=True)
+    birthday = forms.DateField(required=True)
 
-
-
-#A registration Form
-class StudentForm(forms.ModelForm):
-# Clean method which checks whether password matches or not
-#and returns the cleaned data and put it in the register form 
-## view    
-    #Model form
     class Meta:
-        model = Student
-        fields = ["Rollno","Password","Semester"]
-        #exclude = ("Semester",)
-     
+        model = User
+        fields = ('username','email','password1','password2')
 
-class Class(forms.ModelForm):
-    
-    class Meta:
-        model = Class
-        fields =["Dob","Name","Sem"]
+    def save(self,commit=True)
+    user = super(StudentRegistration,self).save(commit=False)
