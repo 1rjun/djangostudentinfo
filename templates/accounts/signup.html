@@ -1,0 +1,20 @@
+{%extends '_layout/base.html'%}
+
+{%load crispy_forms_tags%}
+{%block title%}
+Signup User
+{%endblock%}
+{%block navbar%}
+{{block.super}}
+{%endblock%}
+{%block content%}
+<div class="container">
+    <br>
+<form method="post" >
+    <div class="form-group">
+    {%csrf_token%}
+    {%crispy form%}
+    </div>
+    </form>
+    </div>
+{%endblock%}

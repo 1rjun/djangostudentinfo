@@ -1,0 +1,18 @@
+{%extends '_layout/base.html'%}
+{%block title%}
+Homepage
+{%endblock%}
+{%block body%}
+{%block navbar%}
+{{block.super}}
+{%endblock%}
+<br>
+{%block content%}
+<h1>
+    hello,
+{%if user.is_authenticated%} {{user.username}}{%endif%} Welcome to student Information
+Chatbot
+</h1>
+{%endblock%}
+
+{%endblock%}
