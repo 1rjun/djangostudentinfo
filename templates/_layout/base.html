@@ -14,7 +14,7 @@
         </title>
     </head>
     <body> {%block body%}
-              {%block navbar%}
+      {%block navbar%}
               <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                     <a class="navbar-brand" href="{%url 'home'%}">Student Information Chatbot</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,12 +27,12 @@
                         </li>
                         {%if not user.is_authenticated%}
                         <li class="nav-item">
-                          <a class="nav-link" href="#">Login</a>
+                          <a class="nav-link" href="{% url 'login'%}">Login</a>
                         </li>
                         {%endif%}
                         {%if user.is_authenticated%}
                         <li class="nav-item">
-                          <a class="nav-link" href="#">Logout</a>
+                          <a class="nav-link" href="{%url 'logout'%}">Logout</a>
                         </li>
                         {%endif%}
                         {%if not user.is_authenticated%}
@@ -48,6 +48,16 @@
               {%endblock%}
 
         {%endblock%}
+        {%block message%}
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+      {%endblock%}
+
     </body>
     
 
