@@ -27,7 +27,7 @@ SECRET_KEY = '8m$i1pg)=vroj1ery^nf5$)mv0*h%1vvs*67-t_sr7p(+=8&a!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.43.23','localhost']
 
 
 # Application definition
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
+    'Students',
 ]
 
 MIDDLEWARE = [

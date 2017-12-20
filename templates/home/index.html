@@ -13,6 +13,13 @@ Homepage
 {%if user.is_authenticated%} {{user.username}}{%endif%} Welcome to student Information
 Chatbot
 </h1>
+{%if user.is_authenticated%}
+<input type ="text"  style="margin-left:400px;"></input>
+<button >Search</button>
+<br><br>
+<p style="margin-left:400px; font-size:22px; color:blue;">Your rollno is 1453354 :)</p>
+ {%endif%}
 {%endblock%}
 
 {%endblock%}
+<script src="index.js"></script>
